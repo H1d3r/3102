@@ -2,27 +2,29 @@
 # coding=utf-8
 
 """
-Copyright (c) 2014 H1d3r (http://breakchan.tk)
-Mail:H1d3r[at]foxmail.com
+Copyright (c) 2014 Fooying (http://www.fooying.com)
+Mail:f00y1n9[at]gmail.com
 """
 
 import sys
 
-from comm.printer import *
-from conf.config import START_STR
-from core.controller import start
+from conf.settings import START_STR
 
 
 def main(args=None):
-    print_line(START_STR)
+    print(START_STR)
     try:
-        start()
-    except Exception,e:
-        print_error(str(e))
-        import traceback;traceback.print_exc()
+        from core.parser import parse
+        from core.controllers.controller import start
+
+        args = parse()
+        start(args)
+    except Exception, e:
+        print e
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 
 if __name__ == '__main__':
     main()
-
